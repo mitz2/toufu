@@ -1,0 +1,44 @@
+<h2>Log in</h2>
+
+<%= form_for(resource,
+      as: resource_name,
+      html: {id: 'login_form_id'},
+      url: session_path(resource_name)) do |f| %>
+  <p>
+    {{emailError}}
+  </p>
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.email_field :email, 
+          autofocus: true,
+          autocomplete: "email",
+          'v-on:input': 'emailChk()',
+          'v-model': 'email_field',
+          'v-bind:style': "{background: emailError ? 'pink':''}"%>
+  </div>
+
+  <p>
+    {{passError}}
+  </p>
+
+  <div class="field">
+    <%= f.label :password %><br />
+    <%= f.password_field :password,
+          autocomplete: "current-password",
+          'v-on:input': 'passChk()',
+          'v-model': 'password_field',
+          'v-bind:style': "{background: passError ? 'pink':''}"%>
+  </div>
+
+  <% if devise_mapping.rememberable? -%>
+    <div class="field">
+      <%= f.check_box :remember_me %>
+      <%= f.label :remember_me %>
+    </div>
+  <% end -%>
+  <div class="actions" v-show="loginChk()">
+    <%= f.submit "Log in" %>
+  </div>
+<% end %>
+<%= render "users/shared/links" %>
+<%= javascript_pack_tag 'devise/sessions' %>
