@@ -3,9 +3,6 @@ jobs:
   build:
     docker:
       - image: circleci/ruby:2.5.3
-      - environment:
-          BUNDLE_PATH: vendor/bundle
-          RAILS_ENV: test
     steps:
       - checkout
       - run: echo "A first hello"
