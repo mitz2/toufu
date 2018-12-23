@@ -7,7 +7,6 @@ jobs:
           BUNDLE_PATH: vendor/bundle
           RAILS_ENV: test
     steps:
-      - run: 
-          name: Bundle Install
-          command: echo "A first hello"
+      - checkout
+      - run: echo "A first hello"
 
