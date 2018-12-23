@@ -4,20 +4,20 @@ jobs:
     docker:
       - image: circleci/ruby:2.5.3
       - environment:
-        BUNDLE_PATH: vendor/bundle
-        RAILS_ENV: test
+          BUNDLE_PATH: vendor/bundle
+          RAILS_ENV: test
     steps:
       - checkout
       - restore_cache:
-        keys:
-          - gem-cache-v1-{{ checksum "Gemfile.lock" }}
+          keys:
+            - gem-cache-v1-{{ checksum "Gemfile.lock" }}
       - run: 
-        name: Bundle Install
-        command: bundle install
+          name: Bundle Install
+          command: bundle install
       - save_cache:
-        key: gem-cache-v1-{{ checksum "Gemfile.lock" }}
-        paths:
-          - vendor/bundle
+          key: gem-cache-v1-{{ checksum "Gemfile.lock" }}
+          paths:
+            - vendor/bundle
 workflows:
   version: 2
   build_and_test:
