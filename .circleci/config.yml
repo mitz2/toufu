@@ -2,24 +2,12 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/ruby:2.4.1
+      - image: circleci/ruby:2.5.3
       - environment:
           BUNDLE_PATH: vendor/bundle
           RAILS_ENV: test
     steps:
-      - checkout
-      - restore_cache:
-          keys:
-            - gem-cache-v1-{{ checksum "Gemfile.lock" }}
       - run: 
           name: Bundle Install
-          command: bundle install
-      - save_cache:
-          key: gem-cache-v1-{{ checksum "Gemfile.lock" }}
-          paths:
-            - vendor/bundle
-workflows:
-  version: 2
-  build_and_test:
-    jobs:
-      - build
+          command: echo "A first hello"
+
