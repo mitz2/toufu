@@ -9,8 +9,8 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-        keys:
-          - gem-cache-v1-{{ checksum "Gemfile.lock" }}
+          keys:
+            - gem-cache-v1-{{ checksum "Gemfile.lock" }}
       - run:
           name: Bundle Install
           command: bundle install
