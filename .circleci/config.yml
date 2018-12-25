@@ -1,11 +1,14 @@
 version: 2
-jobs:
-  build:
+executors:
+  my-exe:
     docker:
       - image: circleci/ruby:2.5.3
         environment:
           BUNDLE_PATH: vendor/bundle
           RAILS_ENV: test
+jobs:
+  build:
+    executor: my-exe
     steps:
       - checkout
       - restore_cache:
@@ -19,12 +22,14 @@ jobs:
           paths:
             - vendor/bundle
   test:
-    docker:
-      - image: circleci/ruby:2.5.3
+    executor: my-exe
     steps:
       - run:
           name: Rubocop
-          command: echo 'bundle exec rubocop'
+          command: bundle exec rubocop
+      - run:
+          name: Rspec
+          command: bundle exec rspec
 workflows:
   version: 2
   build_and_test:
