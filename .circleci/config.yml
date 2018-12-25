@@ -6,12 +6,17 @@ executors:
         environment:
           BUNDLE_PATH: vendor/bundle
           RAILS_ENV: test
+  working_directory: ~/myapp
 
 jobs:
   build:
     executor: my-exe
     steps:
       - checkout
+      - save_cache:
+          key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
+          paths: 
+            - ~/myapp
       - restore_cache:
           keys:
             - gem-cache-v1-{{ checksum "Gemfile.lock" }}
@@ -27,6 +32,7 @@ jobs:
     steps:
       - restore_cache:
           keys:
+            - v1-repo-{{ .Environment.CIRCLE_SHA1 }}
             - gem-cache-v1-{{ checksum "Gemfile.lock" }}
       - run:
           name: Rubocop
