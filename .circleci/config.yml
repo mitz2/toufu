@@ -17,21 +17,21 @@ jobs:
           paths: 
             - ~/myapp
       - restore_cache:
-          key: gem-cache-v1-{{ checksum "Gemfile.lock" }}
+          key: gem-cache-{{ checksum "Gemfile.lock" }}
       - run:
           name: Bundle Install
           command: bundle install
       - save_cache:
-          key: gem-cache-v1-{{ checksum "Gemfile.lock" }}
+          key: gem-cache-{{ checksum "Gemfile.lock" }}
           paths:
-            - ~/myapp/vendor/bundle
+            - vendor/bundle
   test:
     executor: my-exe
     steps:
       - restore_cache:
           key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
       - restore_cache:
-          key: gem-cache-v1-{{ checksum "Gemfile.lock" }}
+          key: gem-cache-{{ checksum "Gemfile.lock" }}
       - run:
           name: Rubocop
           command: bundle exec rubocop
