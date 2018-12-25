@@ -6,6 +6,7 @@ executors:
         environment:
           BUNDLE_PATH: vendor/bundle
           RAILS_ENV: test
+
 jobs:
   build:
     executor: my-exe
