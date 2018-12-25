@@ -25,6 +25,9 @@ jobs:
   test:
     executor: my-exe
     steps:
+      - restore_cache:
+          keys:
+            - gem-cache-v1-{{ checksum "Gemfile.lock" }}
       - run:
           name: Rubocop
           command: bundle exec rubocop
