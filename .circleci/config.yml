@@ -8,6 +8,9 @@ jobs:
           RAILS_ENV: test
     steps:
       - checkout
+      - restore_cache:
+        keys:
+          - gem-cache-v1-{{ checksum "Gemfile.lock" }}
       - run:
           name: Bundle Install
           command: bundle install
@@ -15,8 +18,19 @@ jobs:
           key: gem-cache-v1-{{ checksum "Gemfile.lock" }}
           paths:
             - vendor/bundle
+  test:
+    steps:
+      - run:
+          name: Rubocop
+          command: bundle exec rubocop
+      - run:
+          name: Rspec
+          command: bundle exec rspec
 workflows:
   version: 2
   build_and_test:
     jobs:
       - build
+      - test:
+        requires:
+          - build
