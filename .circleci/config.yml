@@ -25,7 +25,7 @@ jobs:
       - save_cache:
           key: gem-cache-v1-{{ checksum "Gemfile.lock" }}
           paths:
-            - vendor/bundle
+            - ./vendor/bundle
   test:
     executor: my-exe
     steps:
