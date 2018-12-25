@@ -19,8 +19,6 @@ jobs:
           paths:
             - vendor/bundle
   test:
-    docker:
-      - image: circleci/ruby:2.5.3
     steps:
       - run:
           name: Rubocop
@@ -31,5 +29,5 @@ workflows:
     jobs:
       - build
       - test:
-        requires:
-          - build
+          requires:
+            - build
