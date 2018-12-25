@@ -6,7 +6,7 @@ executors:
         environment:
           BUNDLE_PATH: vendor/bundle
           RAILS_ENV: test
-  working_directory: ~/myapp
+    working_directory: ~/myapp
 
 jobs:
   build:
