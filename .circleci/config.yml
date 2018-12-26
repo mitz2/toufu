@@ -21,15 +21,6 @@ jobs:
       - run:
           name: Bundle Install
           command: bundle install
-      - run:
-          name: Webpacker Delete
-          command: rm -f config/webpacker.yml 
-      - run:
-          name: Webpacker install
-          command: bundle exec rails webpacker:install
-      - run:
-          name: Vue.js Compile
-          command: bin/webpack
       - save_cache:
           key: gem-cache-{{ checksum "Gemfile.lock" }}
           paths:
