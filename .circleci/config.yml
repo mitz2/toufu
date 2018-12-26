@@ -21,6 +21,9 @@ jobs:
       - run:
           name: Bundle Install
           command: bundle install
+      - run:
+          name: Vue.js Compile
+          command: bin/webpack
       - save_cache:
           key: gem-cache-{{ checksum "Gemfile.lock" }}
           paths:
