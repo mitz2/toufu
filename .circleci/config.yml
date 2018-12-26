@@ -23,7 +23,7 @@ jobs:
           command: bundle install
       - run:
           name: Webpacker install
-          command: bundle exec webpacker:install
+          command: bundle exec rails webpacker:install
       - run:
           name: Vue.js Compile
           command: bin/webpack
