@@ -2,7 +2,7 @@ version: 2.1
 executors:
   my-exe:
     docker:
-      - image: circleci/ruby:2.5.3
+      - image: circleci/ruby:2.5.3-node-browsers
         environment:
           BUNDLE_PATH: vendor/bundle
           RAILS_ENV: test
